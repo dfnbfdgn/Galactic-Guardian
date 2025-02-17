@@ -1,0 +1,251 @@
+[gd_scene load_steps=12 format=3 uid="uid://cii3dojcsgabw"]
+
+[ext_resource type="Texture2D" uid="uid://bmgot2rqvqwu1" path="res://Faerie Dragon Sprite Sheet.png" id="1_dyxod"]
+[ext_resource type="Script" path="res://dragon.gd" id="1_jkdiu"]
+[ext_resource type="PackedScene" uid="uid://cweo3qkubi5p8" path="res://fireball.tscn" id="2_2ge4i"]
+[ext_resource type="Texture2D" uid="uid://cmkpllm7hq4eo" path="res://Faerie Dragon Sprite Sheet (Attack).png" id="2_fuqk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0kaq"]
+size = Vector2(23, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kooli"]
+size = Vector2(22, 28)
+
+[sub_resource type="Animation" id="Animation_u0ufg"]
+resource_name = "Attack"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_fuqk2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+}
+
+[sub_resource type="Animation" id="Animation_71xt7"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_dyxod")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/Area2D/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 3.5), Vector2(-3, 2.5), Vector2(0, 3.75), Vector2(-2, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_e1hfq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_dyxod")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/Area2D/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0nwqm"]
+_data = {
+"Attack": SubResource("Animation_u0ufg"),
+"Idle": SubResource("Animation_71xt7"),
+"RESET": SubResource("Animation_e1hfq")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5xbu"]
+size = Vector2(233, 96.25)
+
+[node name="Dragon" type="CharacterBody2D" groups=["Dragon"]]
+position = Vector2(244, 138)
+script = ExtResource("1_jkdiu")
+fireBallScene = ExtResource("2_2ge4i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 4.5)
+shape = SubResource("RectangleShape2D_c0kaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dyxod")
+hframes = 8
+vframes = 5
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-2, 3.5)
+shape = SubResource("RectangleShape2D_kooli")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0nwqm")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8.5, 8.125)
+shape = SubResource("RectangleShape2D_l5xbu")
+
+[node name="FireBallDirectionRay" type="RayCast2D" parent="."]
+position = Vector2(8, 1)
+target_position = Vector2(34, 0)
+
+[node name="FireballMarker" type="Marker2D" parent="FireBallDirectionRay"]
+
+[node name="ShootTimer" type="Timer" parent="FireBallDirectionRay"]
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-100, 0)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(100, 0)
+
+[connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="FireBallDirectionRay/ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://ce2ah42unm1ux"]
+
+[ext_resource type="Texture2D" uid="uid://b6csqbw34srfu" path="res://Animations/EnemyTank/hurt1.png" id="1_4g3ga"]
+[ext_resource type="Script" path="res://slug.gd" id="1_65tpb"]
+[ext_resource type="Texture2D" uid="uid://cvbwvtufdms74" path="res://Animations/EnemyTank/hurt2.png" id="2_pjieo"]
+[ext_resource type="Texture2D" uid="uid://cvxt5xmn85141" path="res://Animations/EnemyTank/hurt3.png" id="3_urnp0"]
+[ext_resource type="Texture2D" uid="uid://t18b6ywlv76k" path="res://Animations/EnemyTank/hurt4.png" id="4_brky6"]
+[ext_resource type="Texture2D" uid="uid://dt3ywt4x6egfm" path="res://Animations/EnemyTank/hurt5.png" id="5_ertd1"]
+[ext_resource type="Texture2D" uid="uid://c48cur4tpul64" path="res://Animations/EnemyTank/hurt6.png" id="6_0t13x"]
+[ext_resource type="Texture2D" uid="uid://076h1omclhhw" path="res://Animations/EnemyTank/hurt7.png" id="7_emkv2"]
+[ext_resource type="Texture2D" uid="uid://dwply20lwjkf5" path="res://Animations/EnemyTank/poo-goo1.png" id="8_82c66"]
+[ext_resource type="Texture2D" uid="uid://cfyyd2kmhnx72" path="res://Animations/EnemyTank/poo-goo2.png" id="9_dohh6"]
+[ext_resource type="Texture2D" uid="uid://ct5d46s7s50p7" path="res://Animations/EnemyTank/poo-goo3.png" id="10_jqoo1"]
+[ext_resource type="Script" path="res://Area2D2.gd" id="12_col52"]
+[ext_resource type="Script" path="res://Area2D3.gd" id="13_swrhu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_it7ad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4g3ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pjieo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_urnp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_brky6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ertd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0t13x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_emkv2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_82c66")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_dohh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jqoo1")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hdjw"]
+size = Vector2(44, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmmfr"]
+size = Vector2(46, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryo3h"]
+size = Vector2(48, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsh2n"]
+size = Vector2(52, 28)
+
+[node name="slug" type="RigidBody2D"]
+position = Vector2(119, 81)
+script = ExtResource("1_65tpb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(29, -13)
+scale = Vector2(2.087, 2)
+sprite_frames = SubResource("SpriteFrames_it7ad")
+animation = &"idle"
+frame_progress = 0.0712342
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(27, -4)
+shape = SubResource("RectangleShape2D_5hdjw")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(27, -9.25)
+shape = SubResource("RectangleShape2D_rmmfr")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(1, -1)
+script = ExtResource("12_col52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+texture_filter = 1
+position = Vector2(28, -4)
+shape = SubResource("RectangleShape2D_ryo3h")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Area2D3" type="Area2D" parent="."]
+script = ExtResource("13_swrhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(29, -5)
+shape = SubResource("RectangleShape2D_fsh2n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="area_entered" from="Area2D3" to="Area2D3" method="_on_area_entered"]
+[connection signal="slugHit" from="Area2D3" to="." method="_on_area_2d_3_slug_hit"]

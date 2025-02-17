@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://p0kw2vo06qkt"]
+
+[ext_resource type="Script" path="res://Area2D.gd" id="1_h28g8"]
+[ext_resource type="Texture2D" uid="uid://dijyqjuhrql4r" path="res://Animations/traps/plate.png" id="2_jcy0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmib6"]
+size = Vector2(20, 6)
+
+[node name="plate" type="Area2D"]
+script = ExtResource("1_h28g8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, 5)
+shape = SubResource("RectangleShape2D_xmib6")
+
+[node name="Plate" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12, 6)
+texture = ExtResource("2_jcy0a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

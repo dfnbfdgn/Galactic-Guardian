@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5snsgw0jsqf0"]
+
+[ext_resource type="Texture2D" uid="uid://4b8mrtt6qr7t" path="res://FinalSprites/EmeraldSprite.png" id="1_nafpf"]
+[ext_resource type="Script" path="res://emerald.gd" id="1_xdhov"]
+[ext_resource type="PackedScene" uid="uid://dsd3nk28nebk" path="res://sandshield.tscn" id="2_qt0lt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh13x"]
+size = Vector2(12, 12)
+
+[node name="Emerald" type="Area2D"]
+script = ExtResource("1_xdhov")
+SandShieldScene = ExtResource("2_qt0lt")
+
+[node name="EmeraldSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nafpf")
+
+[node name="EmeraldHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hh13x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

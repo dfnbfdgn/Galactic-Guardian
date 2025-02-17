@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bao3fvh2166qi"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_jewmc"]
+[ext_resource type="FontFile" uid="uid://kaqo1pjbkas2" path="res://charybdis/chary___.ttf" id="2_6vecj"]
+[ext_resource type="Texture2D" uid="uid://cdvufbnv15uyj" path="res://TitleScreen.png" id="2_8akx3"]
+[ext_resource type="AudioStream" uid="uid://dgif5a16malc3" path="res://Soundtrack - Prod. Foreverx8/! Main Theme - Foreverx8.mp3" id="4_2ryqi"]
+[ext_resource type="Script" path="res://TitleMusic.gd" id="5_xyi45"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wu0pk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ovgbh"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jewmc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(641, 360.5)
+scale = Vector2(1.6005, 1.60579)
+texture = ExtResource("2_8akx3")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 557.0
+offset_top = 271.0
+offset_right = 731.0
+offset_bottom = 332.0
+focus_neighbor_top = NodePath("../RageQuitButton")
+theme_override_colors/font_hover_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("2_6vecj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wu0pk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wu0pk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wu0pk")
+
+[node name="RageQuitButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 554.0
+offset_top = 362.0
+offset_right = 730.0
+offset_bottom = 424.0
+focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_colors/font_hover_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("2_6vecj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ovgbh")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ovgbh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ovgbh")
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2ryqi")
+autoplay = true
+script = ExtResource("5_xyi45")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="RageQuitButton" to="." method="_on_rage_quit_button_pressed"]
+[connection signal="finished" from="TitleMusic" to="TitleMusic" method="_on_finished"]

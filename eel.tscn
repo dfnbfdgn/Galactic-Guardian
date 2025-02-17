@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cop01nte3701k"]
+
+[ext_resource type="Script" path="res://eel.gd" id="1_b1puc"]
+[ext_resource type="Texture2D" uid="uid://ps6mldoyj1gm" path="res://EelSpriteSheet.png" id="1_kxfqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6t4l"]
+atlas = ExtResource("1_kxfqt")
+region = Rect2(52, 139, 94, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1pd8"]
+atlas = ExtResource("1_kxfqt")
+region = Rect2(149, 139, 94, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhdkg"]
+atlas = ExtResource("1_kxfqt")
+region = Rect2(246, 139, 94, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdk0o"]
+atlas = ExtResource("1_kxfqt")
+region = Rect2(343, 139, 94, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g5dlr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6t4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1pd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhdkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdk0o")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aidvu"]
+radius = 12.0
+height = 90.0
+
+[node name="Eel" type="Area2D"]
+z_index = 2
+script = ExtResource("1_b1puc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g5dlr")
+animation = &"swim"
+frame_progress = 0.144411
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aidvu")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

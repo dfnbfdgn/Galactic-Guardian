@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c53caww7m5s8p"]
+
+[ext_resource type="Script" path="res://arrow_right.gd" id="1_x85ng"]
+[ext_resource type="Texture2D" uid="uid://cfb7joaqhrrvh" path="res://Animations/traps/Arrow.png" id="2_qf4oo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8shf8"]
+size = Vector2(32, 8)
+
+[node name="arrowRight" type="Area2D"]
+position = Vector2(526, 244)
+script = ExtResource("1_x85ng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_8shf8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+rotation = 3.1394
+texture = ExtResource("2_qf4oo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

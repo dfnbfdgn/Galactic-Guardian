@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://cc478otswec4c"]
+
+[ext_resource type="Texture2D" uid="uid://cxrwdb3bj2ebj" path="res://Fan.png" id="1_om7i6"]
+[ext_resource type="Script" path="res://fan.gd" id="1_qapxx"]
+[ext_resource type="Texture2D" uid="uid://dmssdh3hwy7ql" path="res://Bubble.png" id="3_1vq00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcr5h"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(1, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhx30"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(33, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akano"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(65, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odp6m"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(97, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbv4b"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(129, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fo8q"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(161, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlp3y"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(193, 0, 30, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qar8g"]
+atlas = ExtResource("1_om7i6")
+region = Rect2(225, 0, 30, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e07xx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcr5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhx30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akano")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odp6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbv4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fo8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlp3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qar8g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iblau"]
+size = Vector2(28, 153)
+
+[node name="Fan" type="Area2D"]
+script = ExtResource("1_qapxx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e07xx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -68.5)
+shape = SubResource("RectangleShape2D_iblau")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -4)
+amount = 6
+lifetime = 1.7
+randomness = 0.1
+texture = ExtResource("3_1vq00")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(180, 90)
+spread = 81.9
+gravity = Vector2(0, -100)
+scale_amount_min = 0.01
+scale_amount_max = 0.02
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

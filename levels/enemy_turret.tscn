@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://y2ddqip7knxo"]
+
+[ext_resource type="Script" path="res://levels/enemyTurret.gd" id="1_etjmk"]
+[ext_resource type="PackedScene" uid="uid://wmt4bx15vrlo" path="res://levels/tbullet.tscn" id="2_55swb"]
+[ext_resource type="Texture2D" uid="uid://d2dlf4nq8cctr" path="res://levels/turret_BASE.png" id="2_veg5a"]
+[ext_resource type="Texture2D" uid="uid://4dnbv8nwgsn7" path="res://levels/turret_FACE.png" id="3_r72rj"]
+
+[sub_resource type="Animation" id="Animation_xl340"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("turret:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_gdqps"]
+resource_name = "turretBullet"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("turret:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_hv515"]
+resource_name = "turretFired"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("turret:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7q8q"]
+_data = {
+"RESET": SubResource("Animation_xl340"),
+"idleTurret": SubResource("Animation_gdqps"),
+"turretFired": SubResource("Animation_hv515")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5l2h7"]
+radius = 150.0
+
+[node name="enemyTurret" type="CharacterBody2D"]
+position = Vector2(239, 179)
+script = ExtResource("1_etjmk")
+bulletScene = ExtResource("2_55swb")
+
+[node name="turretBase" type="Sprite2D" parent="."]
+texture = ExtResource("2_veg5a")
+
+[node name="turret" type="Sprite2D" parent="."]
+texture = ExtResource("3_r72rj")
+vframes = 10
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l7q8q")
+}
+
+[node name="bulletPath" type="RayCast2D" parent="."]
+target_position = Vector2(250, 0)
+
+[node name="reloadBullet" type="Timer" parent="bulletPath"]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="bulletPath"]
+position = Vector2(11, 0)
+
+[node name="Aggro" type="Area2D" parent="."]
+
+[node name="ignoreTimer" type="Timer" parent="Aggro"]
+wait_time = 5.0
+
+[node name="aggroArea" type="CollisionShape2D" parent="Aggro"]
+shape = SubResource("CircleShape2D_5l2h7")
+
+[connection signal="timeout" from="bulletPath/reloadBullet" to="." method="_on_reload_bullet_timeout"]
+[connection signal="body_entered" from="Aggro" to="." method="_on_aggro_body_entered"]
+[connection signal="body_exited" from="Aggro" to="." method="_on_aggro_body_exited"]
+[connection signal="timeout" from="Aggro/ignoreTimer" to="." method="_on_ignore_timer_timeout"]

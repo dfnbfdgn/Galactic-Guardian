@@ -1,0 +1,69 @@
+[gd_scene load_steps=14 format=3 uid="uid://cweo3qkubi5p8"]
+
+[ext_resource type="Script" path="res://fireball.gd" id="1_2iews"]
+[ext_resource type="Texture2D" uid="uid://snrc5ncl0lar" path="res://FB00_nyknck/FB00_nyknck/FB001.png" id="1_2ries"]
+[ext_resource type="Texture2D" uid="uid://brgh1vmenqakq" path="res://FB00_nyknck/FB00_nyknck/FB002.png" id="2_saoa2"]
+[ext_resource type="Texture2D" uid="uid://byq3ay8o1l1e7" path="res://FB00_nyknck/FB00_nyknck/FB003.png" id="3_bbasc"]
+[ext_resource type="Texture2D" uid="uid://dcyfthccld1r3" path="res://FB00_nyknck/FB00_nyknck/FB004.png" id="4_67je6"]
+[ext_resource type="Texture2D" uid="uid://d1cpl6tticdoa" path="res://FB00_nyknck/FB00_nyknck/FB005.png" id="5_3570w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv3i3"]
+atlas = ExtResource("1_2ries")
+region = Rect2(15, 2, 49, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f282"]
+atlas = ExtResource("2_saoa2")
+region = Rect2(15, 0, 49, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mujxg"]
+atlas = ExtResource("3_bbasc")
+region = Rect2(15, 0, 49, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_san4k"]
+atlas = ExtResource("4_67je6")
+region = Rect2(15, 0, 49, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvpn"]
+atlas = ExtResource("5_3570w")
+region = Rect2(15, 0, 49, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvegk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv3i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f282")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mujxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_san4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khvpn")
+}],
+"loop": true,
+"name": &"Fireball",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1rlq"]
+size = Vector2(35, 18)
+
+[node name="Fireball" type="Area2D"]
+script = ExtResource("1_2iews")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gvegk")
+animation = &"Fireball"
+frame_progress = 0.815711
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -2)
+shape = SubResource("RectangleShape2D_t1rlq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://wmt4bx15vrlo"]
+
+[ext_resource type="Script" path="res://levels/tBullet.gd" id="1_jjqai"]
+[ext_resource type="Texture2D" uid="uid://bwmfr6lhjarvi" path="res://levels/turret_BULLET.png" id="2_yr7bq"]
+
+[sub_resource type="Animation" id="Animation_nmnfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bulletSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_01v2b"]
+resource_name = "bulletFired"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bulletSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqq1p"]
+_data = {
+"RESET": SubResource("Animation_nmnfa"),
+"bulletFired": SubResource("Animation_01v2b")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjo8f"]
+radius = 4.12311
+
+[node name="tBullet" type="Area2D" groups=["damage"]]
+script = ExtResource("1_jjqai")
+
+[node name="bulletSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yr7bq")
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gqq1p")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qjo8f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3wmlvb51q48f"]
+
+[ext_resource type="Texture2D" uid="uid://cstjderf1b8ix" path="res://SpeedPowerUp.png" id="1_2uhib"]
+[ext_resource type="Script" path="res://speed_power_up.gd" id="1_rmdvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n02q"]
+atlas = ExtResource("1_2uhib")
+region = Rect2(5, 0, 242, 259)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_au4d8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n02q")
+}],
+"loop": true,
+"name": &"SpeedPowerUp",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eo87k"]
+radius = 47.4312
+height = 281.233
+
+[node name="SpeedPowerUp" type="Area2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_rmdvl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_au4d8")
+animation = &"SpeedPowerUp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-13, -23)
+rotation = 0.586431
+shape = SubResource("CapsuleShape2D_eo87k")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://datiy8e6je1dy"]
+
+[ext_resource type="Script" path="res://paralyse.gd" id="1_ondnv"]
+[ext_resource type="Texture2D" uid="uid://c6kuvpg8b412t" path="res://TileSet/spritesheet.png" id="2_p3bl1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6d8qb"]
+radius = 14.0357
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac3ub"]
+atlas = ExtResource("2_p3bl1")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_57amw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac3ub")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_n4hus"]
+offsets = PackedFloat32Array(0.083871, 0.6)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_udrsb"]
+gradient = SubResource("Gradient_n4hus")
+fill = 1
+fill_from = Vector2(0.422018, 0.59633)
+
+[node name="paralyse" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_ondnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -6)
+shape = SubResource("CircleShape2D_6d8qb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6.5, -5.5)
+scale = Vector2(1.8125, 1.6875)
+sprite_frames = SubResource("SpriteFrames_57amw")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(9, -6)
+scale = Vector2(1.20312, 0.84375)
+color = Color(0.266667, 1, 0.211765, 1)
+energy = 1.76
+texture = SubResource("GradientTexture2D_udrsb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cndwull6tdirc"]
+
+[ext_resource type="Script" path="res://metal_powerup.gd" id="1_qtyig"]
+[ext_resource type="Texture2D" uid="uid://nx24rv1ng5ga" path="res://MetalPowerup.png" id="1_tiaah"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ovah"]
+radius = 12.0
+
+[node name="MetalPowerup" type="Area2D"]
+script = ExtResource("1_qtyig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8ovah")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("1_tiaah")
+
+[node name="FloatAnimTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FloatAnimTimer" to="." method="_on_float_anim_timer_timeout"]

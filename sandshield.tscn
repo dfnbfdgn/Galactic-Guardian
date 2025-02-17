@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsd3nk28nebk"]
+
+[ext_resource type="Script" path="res://sandshield.gd" id="1_ikmyc"]
+[ext_resource type="Texture2D" uid="uid://d2nypai6lkbhd" path="res://FinalSprites/SandShieldSpriteSheet.png" id="2_oq1mx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_argt2"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_545g2"]
+atlas = ExtResource("2_oq1mx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0bpl"]
+atlas = ExtResource("2_oq1mx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw53y"]
+atlas = ExtResource("2_oq1mx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkmdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_545g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0bpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw53y")
+}],
+"loop": true,
+"name": &"Shield",
+"speed": 6.0
+}]
+
+[node name="Sandshield" type="Area2D" groups=["Player", "damage"]]
+z_index = 10
+script = ExtResource("1_ikmyc")
+
+[node name="ShieldHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_argt2")
+
+[node name="ShieldAnimation" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.172549)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_fkmdr")
+animation = &"Shield"
+frame_progress = 0.291168
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

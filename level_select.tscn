@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6ej43dxbpnpc"]
+
+[ext_resource type="Texture2D" uid="uid://dndehdmge8rd" path="res://LevelSelect.png" id="1_cr4ik"]
+[ext_resource type="Script" path="res://level_select.gd" id="1_wq048"]
+[ext_resource type="AudioStream" uid="uid://dgif5a16malc3" path="res://Soundtrack - Prod. Foreverx8/! Main Theme - Foreverx8.mp3" id="3_x2k3p"]
+[ext_resource type="Script" path="res://SelectMusic.gd" id="4_a1ecs"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wq048")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640.75, 358.75)
+scale = Vector2(1.59863, 1.60022)
+texture = ExtResource("1_cr4ik")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 272.0
+offset_right = 357.0
+offset_bottom = 404.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 271.0
+offset_right = 536.0
+offset_bottom = 404.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 272.0
+offset_right = 717.0
+offset_bottom = 405.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 270.0
+offset_right = 894.0
+offset_bottom = 405.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 0
+offset_left = 939.0
+offset_top = 272.0
+offset_right = 1074.0
+offset_bottom = 404.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+
+[node name="SelectMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x2k3p")
+autoplay = true
+script = ExtResource("4_a1ecs")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="finished" from="SelectMusic" to="SelectMusic" method="_on_finished"]

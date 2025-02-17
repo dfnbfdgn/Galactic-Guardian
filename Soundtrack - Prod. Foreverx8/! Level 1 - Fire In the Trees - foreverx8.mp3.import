@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkniiar1kmunr"
+path="res://.godot/imported/! Level 1 - Fire In the Trees - foreverx8.mp3-1ddce4ae39bb70c8a661f83dc7be7870.mp3str"
+
+[deps]
+
+source_file="res://Soundtrack - Prod. Foreverx8/! Level 1 - Fire In the Trees - foreverx8.mp3"
+dest_files=["res://.godot/imported/! Level 1 - Fire In the Trees - foreverx8.mp3-1ddce4ae39bb70c8a661f83dc7be7870.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
