@@ -1,2 +1,54 @@
-A short but difficult platforming game made using Godot about a space man traveling to different planets
-In order to play the game you must first have Godot installed, and then import the godot file from the project folder.
+**2D Platformer Game**
+
+Description
+
+This is a 2D platformer game built using the Godot Engine. The game features classic platforming mechanics, including running, jumping, and interacting with the environment. The goal is to navigate through levels while avoiding obstacles and enemies.
+
+Features
+
+Smooth platforming mechanics (running, jumping, and falling)
+
+Engaging level design with increasing difficulty
+
+Dynamic obstacles and enemy AI
+
+Collectibles and score tracking
+
+Checkpoints and respawn system
+
+Pixel-art graphics and immersive sound effects
+
+Installation
+
+Prerequisites
+
+Download and install Godot Engine (version 4.x recommended)
+
+Steps
+
+Clone the repository:
+
+git clone https://github.com/yourusername/your-repo.git
+
+Open the project in Godot:
+
+Launch Godot Engine
+
+Click on "Import Project"
+
+Navigate to the cloned folder and select project.godot
+
+Click "Open" to load the project
+
+Run the game by clicking the "Play" button in the Godot editor
+
+Controls
+
+Arrow Keys / A & D - Move left and right
+
+Spacebar - Jump
+
+Esc - Pause Menu
+
+Most Importantly, have fun!
+
